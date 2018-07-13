@@ -15,7 +15,6 @@ os.chdir("D:\TEMP")
 
 
 #################### this is system date##############
-
 dates = datetime.datetime.now().date().__str__()
 ####### find new file on the date #################
 
@@ -33,7 +32,15 @@ dates = datetime.datetime.now().date().__str__()
 
 #files = listdir(os.chdir("D:\TEMP"))
 #print(files)
-for filename in os.listdir("D:/TEMP"):
-    a = os.path.getmtime(filename)
-    if filename.endswith(".txt") and datetime.datetime.fromtimestamp(float(a)).strftime('%Y-%m-%d')==dates:
-        print("==>>")
+
+def chackDatafile(pathDir, *args ):
+    for filename in os.listdir(pathDir):
+        a = os.path.getmtime(filename)
+        if filename.endswith(".txt") and datetime.datetime.fromtimestamp(float(a)).strftime('%Y-%m-%d')==dates and filename.partition('D')[0].__eq__(args[1]):
+            print("-->> work is well")
+        else:
+            print("work is not well")
+            continue
+ #           print(args[0])
+
+chackDatafile("D:\TEMP", "WINservice", "test")
